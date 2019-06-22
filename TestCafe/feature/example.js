@@ -1,13 +1,14 @@
 import {Selector, t} from "testcafe";
 import examplePage from "../pages/examplePage"
 import thankYou from "../pages/thankYou";
+import {EXAMPLE_BASE_URL} from "../support/utlis"
 
 const example = new examplePage();
 const thanks = new thankYou();
 
 
 fixture`TestCafe examplest`
-    .page`https://devexpress.github.io/testcafe/example/`
+    .page(`${EXAMPLE_BASE_URL}`);
 
 
 test("Enter and validate text input", async t => {
