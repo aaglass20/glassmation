@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@ssh.dev.azure.com:v3/onshift/ProductDevelopment/Testing.TestCafe"
+    "url": "git@github.com:aaglass20/glassmation.git"
   },
   "author": "Aaron Glass",
   "license": "ISC",
