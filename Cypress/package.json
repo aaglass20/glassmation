@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "testGherkin": "./node_modules/.bin/cypress run --spec \"cypress/integration/testing/gherkinFeature.feature\" --browser chrome",
-    "testJs": "./node_modules/.bin/cypress run --spec \"cypress/integration/testing/jsExample.js\" --browser chrome"
-
+    "testJs": "./node_modules/.bin/cypress run --spec \"cypress/integration/testing/jsExample.js\" --browser chrome",
+    "openCypress": "./node_modules/.bin/cypress open"
   },
   "repository": {
     "type": "git",

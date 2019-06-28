@@ -53,5 +53,26 @@ describe('Cypress Exanples', function () {
         cy.get('#reusing-js-code').should('be.checked')
     })
 
+    it('Validate selected and unselected radio input elements', function () {
+        `
+        Given I am on the TestCafe example homepage
+        When I select checkbox input elements
+        Then I validate selected and unselected checkbox input elements
+        `
+        cy.visit(Cypress.env('TESTING_BASE_URL'))
+        cy.get('#windows').check()
+        cy.get('#windows').should('be.checked')
+        cy.get('#macos').should('not.be.checked')
+        cy.get('#linux').should('not.be.checked')
+        cy.get('#macos').check()
+        cy.get('#windows').should('not.be.checked')
+        cy.get('#macos').should('be.checked')
+        cy.get('#linux').should('not.be.checked')
+        cy.get('#linux').check()
+        cy.get('#windows').should('not.be.checked')
+        cy.get('#macos').should('not.checked')
+        cy.get('#linux').should('be.checked')
+    })
+
 })
 
