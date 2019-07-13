@@ -2,10 +2,13 @@ import {Selector, t} from "testcafe";
 import examplePage from "../pages/examplePage"
 import thankYou from "../pages/thankYou";
 import {EXAMPLE_BASE_URL} from "../support/utlis"
+import faker from "faker"
 
 const example = new examplePage();
 const thanks = new thankYou();
 
+var randomName = faker.name.findName();
+var randomWords = faker.random.words();
 
 fixture`TestCafe examplest`
     .page(`${EXAMPLE_BASE_URL}`);
@@ -20,6 +23,17 @@ test("Enter and validate text input", async t => {
     await t
         .typeText(example.youName, "John Smith")
         .expect(example.youName.value).contains('John Smith')
+});
+
+test("Enter and validate text input with faker", async t => {
+    Description: `
+        Given I am on the TestCafe example homepage
+        When enter a name for 'Your Name'
+        Then name entered displays in the input box
+    `;
+    await t
+        .typeText(example.youName, randomName)
+        .expect(example.youName.value).contains(randomName)
 });
 
 
@@ -135,6 +149,19 @@ test("Enter and validate textarea entry", async t => {
         .click(example.triedTestCafe)
         .typeText(example.comments, "This is a very nice product")
         .expect(example.comments.value).contains("This is a very nice product")
+});
+
+test("Enter and validate textarea entry with faker", async t => {
+    Description: `
+        Given I am on the TestCafe example homepage
+        When select 'I have tried TestCafe'
+        And enter comments for 'Please let us know what you think:'
+        Then I validate the value entered in textarea
+    `;
+    await t
+        .click(example.triedTestCafe)
+        .typeText(example.comments, randomWords)
+        .expect(example.comments.value).contains(randomWords)
 });
 
 

@@ -7,7 +7,7 @@
     "test1": "testcafe chrome ./feature/test1.js",
     "test:critical:1": "testcafe --test-meta Critical=1 chrome ./feature/example.js -e",
     "test:critical:2": "testcafe --test-meta Critical=2 chrome ./feature/example.js -e",
-    "test": "testcafe remote ./feature/example.js -r spec,junit:/tmp/reports.xml -e"
+    "test": "testcafe chrome ./feature/example.js -r spec,junit:/tmp/reports.xml -e"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "dotenv": "^8.0.0",
+    "faker": "^4.1.0",
     "lodash": "^4.17.11",
     "testcafe": "^1.2.0",
     "testcafe-reporter-junit": "^3.0.0"
