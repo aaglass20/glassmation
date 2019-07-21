@@ -7,7 +7,8 @@
     "test1": "testcafe chrome ./feature/test1.js",
     "test:critical:1": "testcafe --test-meta Critical=1 chrome ./feature/example.js -e",
     "test:critical:2": "testcafe --test-meta Critical=2 chrome ./feature/example.js -e",
-    "test": "testcafe chrome ./feature/example.js -r spec,junit:/tmp/reports.xml -e"
+    "test": "testcafe chrome ./feature/example.js -r spec,junit:/tmp/reports.xml -e",
+    "test:all": "testcafe chrome ./feature/ -r spec,junit:/tmp/reports.xml -e"
   },
   "repository": {
     "type": "git",
