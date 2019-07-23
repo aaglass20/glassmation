@@ -53,3 +53,14 @@ test("Select Grid Row", async t => {
     await t
         .expect(cle.cleTitle.innerText).contains('Cleveland Indians');
 });
+
+
+test("Count rows in the interest table", async t => {
+    `   Given I am on the Glassmation example page
+        When I have count Interest column 
+        Then the correct number of Interest are returned
+    `;
+    await t
+        .expect(glass.interest.count).eql(3)
+    ;
+});
