@@ -1,0 +1,370 @@
+{
+	"info": {
+		"_postman_id": "27bb4681-0086-48e8-90a6-17db1be0af0a",
+		"name": "Client Booking Outside 24 Hours and Cancels Appointment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "PRO Get Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7926f6fb-44d0-41f6-835d-6944a9015760",
+						"exec": [
+							"var responseKey = pm.response.json();",
+							"",
+							"pm.test(\"Response is successful, Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// set environment variable",
+							"pm.environment.set(\"proUserID\",responseKey.provider_id);",
+							"",
+							"console.log('UserName: '+ responseKey.username);",
+							"console.log('UserID: '+ responseKey.provider_id);",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "aglass+2@styleseat.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "SSaag1!",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "username",
+						"value": "{{username}}",
+						"type": "text"
+					},
+					{
+						"key": "password",
+						"value": "{{password}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "{{prousername}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/accounts/ajax-login/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"accounts",
+						"ajax-login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Client Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7926f6fb-44d0-41f6-835d-6944a9015760",
+						"exec": [
+							"var responseKey = pm.response.json();",
+							"",
+							"pm.test(\"Response is successful, Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"//set environment variable",
+							"pm.environment.set(\"clientUserID\",responseKey.user_id);",
+							"",
+							"//set environment variable",
+							"//pm.globals.set('team_id', responseKey.team_id);",
+							"",
+							"",
+							"",
+							"// pm.test(\"Validate Team exist in text\", function () {",
+							"//     pm.expect(pm.response.text()).to.include(\"Cleveland Indians\");",
+							"// });",
+							"",
+							"// pm.test(\"Validate JSON team_full is Cleveland Indians\", function () {",
+							"//     pm.expect(pm.response.text()).to.include('\"team_full\":\"Cleveland Indians\"');",
+							"// });",
+							"",
+							"// pm.test(\"Validate Team Abbreviation is CLE\", function () {",
+							"//     pm.expect(responseKey.team_abbrev).to.include('CLE');",
+							"// });",
+							"",
+							"console.log('UserName: '+ responseKey.username);",
+							"console.log('UserID: '+ responseKey.user_id);",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "aglass+2@styleseat.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "SSaag1!",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "username",
+						"value": "{{clientUserName}}",
+						"type": "text"
+					},
+					{
+						"key": "password",
+						"value": "{{password}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/accounts/ajax-login/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"accounts",
+						"ajax-login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Client Books Appointment Outside 24 hours",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "503cd605-d41b-4268-ba8d-9c6a97618b33",
+						"exec": [
+							"var responseKey = pm.response.json();",
+							"",
+							"pm.test(\"Response is successful, Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"// set environment variable",
+							"pm.environment.set(\"appointmentId\",responseKey.appointment_id);",
+							"",
+							"",
+							"console.log('Appointment ID: '+ responseKey.appointment_id);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b5a14367-4431-4efe-acb8-da1775f78d52",
+						"exec": [
+							"const moment = require('moment');",
+							"",
+							"pm.environment.set(\"appointmentDate\", moment(). add(3,'days').format('YYYY-MM-DD'));",
+							"",
+							"pm.environment.set(\"appointmentTime\",moment().format('HH:MM'));",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "service_list",
+						"value": "4864684",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "service_list",
+							"value": "4864684",
+							"type": "text"
+						},
+						{
+							"key": "start_time",
+							"value": "{{appointmentTime}}",
+							"type": "text"
+						},
+						{
+							"key": "appointment_date",
+							"value": "{{appointmentDate}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/schedule/book/{{proUserID}}/submit/onmob/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"schedule",
+						"book",
+						"{{proUserID}}",
+						"submit",
+						"onmob",
+						""
+					],
+					"query": [
+						{
+							"key": "service_list",
+							"value": "4864684",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cancel Client Appointment outside of 24 hours",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "809eab09-6bda-4c22-ad66-4a88950de73a",
+						"exec": [
+							"pm.test(\"Response is successful, Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Validate is_cancelled is true\", function () {",
+							"    pm.expect(pm.response.text()).to.include('\"is_cancelled\":true');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/v1/user/{{clientUserID}}/appt/{{appointmentId}}.json",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"{{clientUserID}}",
+						"appt",
+						"{{appointmentId}}.json"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "52a829cf-4b11-43b3-8efc-e2f9c1f53c93",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "f0f49eb2-50fd-470b-87ac-bc6e307e558c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
