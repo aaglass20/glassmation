@@ -1,0 +1,274 @@
+{
+	"info": {
+		"_postman_id": "fda0a848-8fdc-4402-b27f-13f5fbb418c3",
+		"name": "Cleveland Indians API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Lookup MLB Players by Name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d9f4f180-8dea-4861-bebf-39e7cd2d5a80",
+						"exec": [
+							"var responseKey = pm.response.json().search_player_all.queryResults.row;",
+							"",
+							"//set environment variable",
+							"pm.environment.set(\"player_id\",responseKey.player_id);",
+							"",
+							"//set environment variable",
+							"pm.globals.set('team_id', responseKey.team_id);",
+							"",
+							"pm.test(\"Response is successful, Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Validate Team exist in text\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Cleveland Indians\");",
+							"});",
+							"",
+							"pm.test(\"Validate JSON team_full is Cleveland Indians\", function () {",
+							"    pm.expect(pm.response.text()).to.include('\"team_full\":\"Cleveland Indians\"');",
+							"});",
+							"",
+							"pm.test(\"Validate Team Abbreviation is CLE\", function () {",
+							"    pm.expect(responseKey.team_abbrev).to.include('CLE');",
+							"});",
+							"",
+							"console.log('I play '+ responseKey.position + ' for the '+ responseKey.team_full);",
+							"console.log('My name is '+ responseKey.name_display_first_last);",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/json/named.search_player_all.bam?sport_code={{sport_code}}&active_sw='Y'&name_part='Lindor%25'",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"json",
+						"named.search_player_all.bam"
+					],
+					"query": [
+						{
+							"key": "sport_code",
+							"value": "{{sport_code}}"
+						},
+						{
+							"key": "active_sw",
+							"value": "'Y'",
+							"description": "'"
+						},
+						{
+							"key": "name_part",
+							"value": "'Lindor%25'"
+						},
+						{
+							"key": "name_display_first_last",
+							"value": "",
+							"disabled": true
+						}
+					]
+				},
+				"description": "test"
+			},
+			"response": []
+		},
+		{
+			"name": "40 Man roster by team id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fbc89181-db59-47d4-b34b-b6fd03bf2ec4",
+						"exec": [
+							"var responseKey = pm.response.json().roster_40.queryResults.row;",
+							"",
+							"pm.test(\"Response is successful, Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Validate Team exist in text\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Cleveland Indians\");",
+							"});",
+							"",
+							"pm.test(\"Validate JSON name_display_first_last includes Shane Bieber\", function () {",
+							"    pm.expect(pm.response.text()).to.include('\"name_display_first_last\":\"Shane Bieber\"');",
+							"});",
+							"",
+							"pm.test(\"Validate Shane Bieber is included in the 40 man Roster\", function () {",
+							"    pm.expect(responseKey[4].name_display_first_last).to.include('Shane Bieber');",
+							"});",
+							"",
+							"console.log('I am the 4th row on the 40 man roster '+ responseKey[4].name_display_first_last);",
+							"",
+							"console.log('I am the 30th row on the 40 man roster '+ responseKey[30].name_display_first_last);",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/json/named.roster_40.bam?team_id={{team_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"json",
+						"named.roster_40.bam"
+					],
+					"query": [
+						{
+							"key": "team_id",
+							"value": "{{team_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Teams player have played on",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e913180d-1625-47d7-83e6-bbba080e2b4e",
+						"exec": [
+							"var responseKey = pm.response.json().player_teams.queryResults.row;",
+							"",
+							"pm.test(\"Response is successful, Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Validate Akron RubberDucks exist in text\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Akron RubberDucks\");",
+							"});",
+							"",
+							"pm.test(\"Validate JSON team_short includes Peoria\", function () {",
+							"    pm.expect(pm.response.text()).to.include('\"team_short\":\"Peoria\"');",
+							"});",
+							"",
+							"pm.test(\"Validate Columbus Clipper is included in teams Franky Lindor has played for\", function () {",
+							"    pm.expect(responseKey[0].team).to.include('Columbus Clippers');",
+							"});",
+							"",
+							"console.log('First team row is '+ responseKey[0].team);",
+							"",
+							"console.log('Third team row is '+ responseKey[2].team);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/json/named.player_teams.bam?season='2014'&player_id={{player_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"json",
+						"named.player_teams.bam"
+					],
+					"query": [
+						{
+							"key": "season",
+							"value": "'2014'"
+						},
+						{
+							"key": "player_id",
+							"value": "{{player_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Roster by Season by team",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "65df6e28-8124-4235-b63a-ca58f664a6bc",
+						"exec": [
+							"var responseKey = pm.response.json().roster_team_alltime.queryResults.row;",
+							"",
+							"pm.test(\"Response is successful, Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Validate Orel Hershiser exist in text\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Orel Hershiser\");",
+							"});",
+							"",
+							"pm.test(\"Validate JSON name_first_last includes Jose Mesa\", function () {",
+							"    pm.expect(pm.response.text()).to.include('\"name_first_last\":\"Jose Mesa\"');",
+							"});",
+							"",
+							"pm.test('Validate Bartolo Colon was on the ' + pm.environment.get('year') + ' roster', function () {",
+							"    pm.expect(responseKey[9].name_first_last).to.include('Bartolo Colon');",
+							"});",
+							"",
+							"console.log('First Player on ' + pm.environment.get('year') +' roster is '+ responseKey[0].name_first_last);",
+							"",
+							"console.log('10th Player on ' + pm.environment.get('year') +' roster is '+ responseKey[9].name_first_last);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/json/named.roster_team_alltime.bam?start_season={{year}}&end_season={{year}}&team_id={{team_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"json",
+						"named.roster_team_alltime.bam"
+					],
+					"query": [
+						{
+							"key": "start_season",
+							"value": "{{year}}"
+						},
+						{
+							"key": "end_season",
+							"value": "{{year}}"
+						},
+						{
+							"key": "team_id",
+							"value": "{{team_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
