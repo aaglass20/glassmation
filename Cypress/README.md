@@ -8,8 +8,16 @@ npm install --save-dev cypress-cucumber-preprocessor
 #open
 Access cypress dir > run: ./node_modules/.bin/cypress open
 
+or
+
+npx cypress open
+
 #run
 Access cypress dir > run: ./node_modules/.bin/cypress run
+
+or 
+
+npx cypress run
 
 #run specific test
 ./node_modules/.bin/cypress run --spec "cypress/integration/testing/gherkinFeature.feature" --browser chrome
