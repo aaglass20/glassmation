@@ -1,3 +1,7 @@
+import {CreditCards} from "../../helpers/creditCards";
+
+const cc = new CreditCards()
+
 describe('Cypress Exanples', function () {
     it('Enter and validate text input', function () {
         `
@@ -72,6 +76,17 @@ describe('Cypress Exanples', function () {
         cy.get('#windows').should('not.be.checked')
         cy.get('#macos').should('not.checked')
         cy.get('#linux').should('be.checked')
+    })
+
+
+    it('Switch Case', function () {
+        cy.visit(Cypress.env('TESTING_BASE_URL'))
+        cy.log('Discover is ' + cc.creditCards("Discover"))
+        cy.log('Visa is ' + cc.creditCards("Visa"))
+        cy.log('Mastercard is ' + cc.creditCards("Mastercard"))
+        cy.log('AmericanExpress is ' + cc.creditCards("AmericanExpress"))
+        cy.get('#tried-test-cafe').click()
+        cy.get('[data-testid=comments-area]').type("Visa " + cc.creditCards("Visa") + ' Forever')
     })
 
 })
