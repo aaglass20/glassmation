@@ -1,7 +1,7 @@
 export class CreditCards {
 
     creditCards(card) {
-        
+
         switch (card) {
             case 'Mastercard':
                 return '5555555555554444'

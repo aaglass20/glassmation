@@ -4,9 +4,10 @@
   "description": "cypress test",
   "main": "index.js",
   "scripts": {
-    "testGherkin": "./node_modules/.bin/cypress run --spec \"cypress/integration/testing/gherkinFeature.feature\" --browser chrome",
-    "testJs": "./node_modules/.bin/cypress run --spec \"cypress/integration/testing/jsExample.js\" --browser chrome",
-    "openCypress": "./node_modules/.bin/cypress open"
+    "testGherkin": "cypress run -s 'cypress/integration/testing/gherkinFeature.feature' -b chrome",
+    "testJs": "cypress run -s 'cypress/integration/testing/jsExample.js' -b chrome",
+    "open": "cypress open",
+    "run": "cypress run"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,8 @@
   "license": "MIT",
   "dependencies": {
     "cypress": "^4.7.0",
-    "cypress-cucumber-preprocessor": "~1.8.0"
+    "cypress-cucumber-preprocessor": "~1.8.0",
+    "faker": "^4.1.0"
   },
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": true
