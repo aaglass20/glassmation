@@ -13,4 +13,11 @@ describe('UI Test Automation Playground', function () {
         uitap.clickButtonWithDynamicID()
     })
 
+    it.only('Execute the test and make sure that click count is increasing by 2', function () {
+        nav.uitapMouseOver()
+        uitap.clickClickMe()
+        uitap.clickClickMe()
+        uitap.verifyClickCountIs("2")
+    })
+
 })
