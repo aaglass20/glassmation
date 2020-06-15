@@ -13,11 +13,33 @@ describe('UI Test Automation Playground', function () {
         uitap.clickButtonWithDynamicID()
     })
 
-    it.only('Execute the test and make sure that click count is increasing by 2', function () {
+    it('Execute the test and make sure that click count is increasing by 2', function () {
         nav.uitapMouseOver()
         uitap.clickClickMe()
         uitap.clickClickMe()
         uitap.verifyClickCountIs("2")
+    })
+
+    it('Sample App Login - validate defaults', function () {
+        nav.uitapSampleApp()
+        uitap.validateUserNamePlaceholder('User Name')
+        uitap.validatePasswordPlaceholder('********')
+        uitap.validateLoginText('Log In')
+        uitap.validateLabelText('User logged out.')
+    })
+
+    it('Sample App Login - error handling', function () {
+        nav.uitapSampleApp()
+        uitap.clickLogin()
+        uitap.validateLabelText('Invalid username/password')
+    })
+
+    it('Sample App Login - Success', function () {
+        nav.uitapSampleApp()
+        uitap.enterUserName('Kenny Lofton')
+        uitap.enterPassword('pwd')
+        uitap.clickLogin()
+        uitap.validateLabelText('Welcome, Kenny Lofton!')
     })
 
 })

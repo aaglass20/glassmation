@@ -12,4 +12,8 @@ export class Navigation {
         cy.visit(Cypress.env('UITAP_BASE_URL') + 'mouseover')
     }
 
+    uitapSampleApp() {
+        cy.visit(Cypress.env('UITAP_BASE_URL') + 'sampleapp')
+    }
+
 }
