@@ -1,3 +1,5 @@
+import 'cypress-wait-until';
+
 export class UitapPages {
     constructor() {
         // dynamic button
@@ -13,6 +15,11 @@ export class UitapPages {
         this.passwordInput = ('input[name="Password"]')
         this.loginButton = ('button[id="login"]')
         this.infoLabel = ('label[id="loginstatus"]')
+
+        //progress bar
+        this.startButton = ('button[id="startButton"]')
+        this.stopButton = ('button[id="stopButton"]')
+        this.progressBar = ('div[id="progressBar"]')
     }
 
     // dynamic button
@@ -66,5 +73,20 @@ export class UitapPages {
     enterPassword(password) {
         cy.get(this.passwordInput).type(password)
     }
+
+    //progress bar
+    clickStartButton() {
+        cy.get(this.startButton).click()
+    }
+
+    waitUntilProgressBar(percent) {
+        cy.waitUntil(() => cy.get(this.progressBar).then(value => value.text() === percent), {
+            errorMsg: 'Progress Bar did not reach 100% before timeout',
+            timeout: 60000,
+            interval: 1000
+        });
+
+    }
+
 
 }

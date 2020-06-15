@@ -16,4 +16,11 @@ export class Navigation {
         cy.visit(Cypress.env('UITAP_BASE_URL') + 'sampleapp')
     }
 
+    uitapProgressBar() {
+        cy.visit(Cypress.env('UITAP_BASE_URL') + 'progressbar')
+    }
+
+
+
+
 }

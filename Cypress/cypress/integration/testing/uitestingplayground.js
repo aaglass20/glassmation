@@ -42,4 +42,10 @@ describe('UI Test Automation Playground', function () {
         uitap.validateLabelText('Welcome, Kenny Lofton!')
     })
 
+    it('Progress Bar - Wait Until', function () {
+        nav.uitapProgressBar()
+        uitap.clickStartButton()
+        uitap.waitUntilProgressBar("100%")
+    })
+
 })
