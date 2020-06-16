@@ -20,6 +20,9 @@ export class UitapPages {
         this.startButton = ('button[id="startButton"]')
         this.stopButton = ('button[id="stopButton"]')
         this.progressBar = ('div[id="progressBar"]')
+
+        //classAttr
+        this.blueButton = ('button.btn-primary')
     }
 
     // dynamic button
@@ -85,8 +88,15 @@ export class UitapPages {
             timeout: 60000,
             interval: 1000
         });
-
     }
 
+    clickButtonVerifyAlert(alert) {
+        const stub = cy.stub()
+        cy.on('window:alert', stub)
+        cy.get(this.blueButton).click()
+            .then(() => {
+                expect(stub.getCall(0)).to.be.calledWith(alert)
+            })
+    }
 
 }

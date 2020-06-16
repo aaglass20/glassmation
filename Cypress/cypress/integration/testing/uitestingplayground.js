@@ -48,4 +48,9 @@ describe('UI Test Automation Playground', function () {
         uitap.waitUntilProgressBar("100%")
     })
 
+    it('Verify Alert from button push', function () {
+        nav.uitapClassAttr()
+        uitap.clickButtonVerifyAlert('Primary button pressed')
+    })
+
 })
