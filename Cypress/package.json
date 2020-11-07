@@ -21,10 +21,10 @@
   "author": "Aaron Glass",
   "license": "MIT",
   "dependencies": {
-    "cypress": "^4.7.0",
+    "cypress": "^5.5.0",
     "cypress-cucumber-preprocessor": "~1.8.0",
-    "faker": "^4.1.0",
-    "cypress-wait-until": "^1.6.1"
+    "cypress-wait-until": "^1.6.1",
+    "faker": "^4.1.0"
   },
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": true
