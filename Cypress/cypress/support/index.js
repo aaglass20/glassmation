@@ -18,3 +18,15 @@ import './commands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+beforeEach(() => {
+  if (Cypress.env("isMobile") === "y") {
+    cy.viewport("iphone-x")
+    cy.log("Mobile")
+  } else {
+    cy.log("Desktop")
+  }
+})
+
+//Cypress clears cookies but not localforage between runs. Adding will "clean slate" between runs
+indexedDB.deleteDatabase("localforage")

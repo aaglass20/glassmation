@@ -1,5 +1,6 @@
 import {Navigation} from "../../helpers/navigation";
 import {UitapPages} from "../../pages/uitap";
+import {describeDesktop, itDesktop, itMobile} from "../../helpers/utils";
 
 const nav = new Navigation()
 const uitap = new UitapPages()
@@ -51,6 +52,20 @@ describe('UI Test Automation Playground', function () {
     it('Verify Alert from button push', function () {
         nav.uitapClassAttr()
         uitap.clickButtonVerifyAlert('Primary button pressed')
+    })
+
+    itMobile('Mobile Only', function () {
+        nav.uitapDynamic()
+        uitap.verifyButtonExist()
+        uitap.verifyButtonName('Button with Dynamic ID')
+        uitap.clickButtonWithDynamicID()
+    })
+
+    itDesktop('Desktop Only', function () {
+        nav.uitapDynamic()
+        uitap.verifyButtonExist()
+        uitap.verifyButtonName('Button with Dynamic ID')
+        uitap.clickButtonWithDynamicID()
     })
 
 })
