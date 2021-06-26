@@ -22,11 +22,14 @@
   "license": "MIT",
   "dependencies": {
     "cypress": "^6.6.0",
-    "cypress-cucumber-preprocessor": "~1.8.0",
+    "cypress-cucumber-preprocessor": "^1.19.2",
     "cypress-wait-until": "^1.6.1",
     "faker": "^4.1.0"
   },
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": true
+  },
+  "devDependencies": {
+    "cypress-image-snapshot": "^4.0.1"
   }
 }
