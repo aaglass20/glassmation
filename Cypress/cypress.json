@@ -3,6 +3,7 @@
   "env": {
     "TESTING_BASE_URL": "https://devexpress.github.io/testcafe/example/",
     "UITAP_BASE_URL": "http://www.uitestingplayground.com/",
+    "MLB_BASE_URL": "http://lookup-service-prod.mlb.com",
     "isMobile": "n"
   }
 }
